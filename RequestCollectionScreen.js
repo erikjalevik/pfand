@@ -10,9 +10,7 @@ import {
   ActivityIndicator,
   ScrollView
 } from 'react-native';
-
-const TEXT_COLOR = '#a0f0f0';
-const BACKGROUND_COLOR = '#001020';
+import Constants from './Constants'
 
 export default class RequestCollectionScreen extends Component {
 
@@ -46,19 +44,19 @@ export default class RequestCollectionScreen extends Component {
           <TextInput
               style={styles.input}
               placeholder='Your name'
-              placeholderTextColor={TEXT_COLOR}
+              placeholderTextColor={Constants.textColor}
               autoCapitalise='none'
               autoCorrect={false} />
           <TextInput
               style={styles.input}
               placeholder='Your address'
-              placeholderTextColor={TEXT_COLOR}
+              placeholderTextColor={Constants.textColor}
               autoCapitalise='none'
               autoCorrect={false} />
           <TextInput
               style={styles.input}
               placeholder='Number of bottles'
-              placeholderTextColor={TEXT_COLOR}
+              placeholderTextColor={Constants.textColor}
               autoCapitalise='none'
               autoCorrect={false} />
           {buttonOrSpinner}
@@ -73,7 +71,7 @@ const styles = StyleSheet.create({
   body: {
     fontSize: 22,
     textAlign: 'center',
-    color: TEXT_COLOR,
+    color: Constants.textColor,
     marginTop: 20,
     marginBottom: 20
   },
@@ -90,15 +88,15 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     fontSize: 18,
     borderWidth: 1,
-    borderColor: TEXT_COLOR,
+    borderColor: Constants.textColor,
     borderRadius: 8,
-    color: TEXT_COLOR,
+    color: Constants.textColor,
 
   },
   button: {
     height: 36,
-    backgroundColor: TEXT_COLOR,
-    borderColor: TEXT_COLOR,
+    backgroundColor: Constants.textColor,
+    borderColor: Constants.textColor,
     borderWidth: 1,
     marginTop: 5,
     marginBottom: 5,
@@ -107,7 +105,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 18,
-    color: BACKGROUND_COLOR,
+    color: Constants.backgroundColor,
     alignSelf: 'center',
   }
 });
