@@ -22,6 +22,8 @@ export default class RequestCollectionScreen extends Component {
     super(props);
     this.state = {
       name: "Pfandgeber",
+      address: "",
+      numBottles: "",
       isAdding: false
     }
   }
@@ -39,11 +41,14 @@ export default class RequestCollectionScreen extends Component {
             Find someone to collect your bottles and cans.
           </PfText>
           <PfTextInput
-              placeholder='Your name' />
+              placeholder='Your name'
+              onChangeText={text => this.setState({name: text})} />
           <PfTextInput
-              placeholder='Your address' />
+              placeholder='Your address'
+              onChangeText={text => this.setState({address: text})} />
           <PfTextInput
-              placeholder='Number of bottles' />
+              placeholder='Number of bottles'
+              onChangeText={text => this.setState({numBottles: text})} />
           {buttonOrSpinner}
         </View>
       </ScrollView>
