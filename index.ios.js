@@ -33,7 +33,7 @@ AppRegistry.registerComponent('pfand', () => Pfand);
 const styles = StyleSheet.create({
 
   vbox: {
-    backgroundColor: '#001020',
+    backgroundColor: Constants.backgroundColor,
     flexDirection: 'column',
     flex: 1,
     alignItems: 'stretch'

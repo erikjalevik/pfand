@@ -44,19 +44,19 @@ export default class RequestCollectionScreen extends Component {
           <TextInput
               style={styles.input}
               placeholder='Your name'
-              placeholderTextColor={Constants.textColor}
+              placeholderTextColor={Constants.textColorDisabled}
               autoCapitalise='none'
               autoCorrect={false} />
           <TextInput
               style={styles.input}
               placeholder='Your address'
-              placeholderTextColor={Constants.textColor}
+              placeholderTextColor={Constants.textColorDisabled}
               autoCapitalise='none'
               autoCorrect={false} />
           <TextInput
               style={styles.input}
               placeholder='Number of bottles'
-              placeholderTextColor={Constants.textColor}
+              placeholderTextColor={Constants.textColorDisabled}
               autoCapitalise='none'
               autoCorrect={false} />
           {buttonOrSpinner}
@@ -69,9 +69,9 @@ export default class RequestCollectionScreen extends Component {
 const styles = StyleSheet.create({
 
   body: {
-    fontSize: 22,
-    textAlign: 'center',
     color: Constants.textColor,
+    fontSize: Constants.bodyFontSize,
+    textAlign: 'center',
     marginTop: 20,
     marginBottom: 20
   },
@@ -82,30 +82,29 @@ const styles = StyleSheet.create({
     marginTop: 20
   },
   input: {
+    color: Constants.textColor,
+    borderColor: Constants.textColor,
+    fontSize: Constants.inputFontSize,
     height: 36,
     padding: 4,
     marginTop: 5,
     marginBottom: 5,
-    fontSize: 18,
     borderWidth: 1,
-    borderColor: Constants.textColor,
     borderRadius: 8,
-    color: Constants.textColor,
-
   },
   button: {
-    height: 36,
     backgroundColor: Constants.textColor,
     borderColor: Constants.textColor,
+    justifyContent: 'center',
+    height: 36,
     borderWidth: 1,
     marginTop: 5,
     marginBottom: 5,
-    justifyContent: 'center',
     borderRadius: 8
   },
   buttonText: {
-    fontSize: 18,
     color: Constants.backgroundColor,
-    alignSelf: 'center',
+    fontSize: Constants.buttonFontSize,
+    alignSelf: 'center'
   }
 });
