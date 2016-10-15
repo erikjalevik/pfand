@@ -15,9 +15,13 @@ import {
   View,
   TouchableHighlight,
   ActivityIndicator,
-  ScrollView
+  ScrollView,
+  TouchableWithoutFeedback
 } from 'react-native';
 import { connect } from 'react-redux';
+
+// Unsure why Keybard.dismiss() doesn't work...
+const dismissKeyboard = require('dismissKeyboard');
 
 class RequestCollectionScreen extends Component {
 
@@ -45,25 +49,31 @@ class RequestCollectionScreen extends Component {
     const buttonOrSpinner = this.state.isAdding ?
       ( <ActivityIndicator size='large'/> ) :
       ( <PfButton title="Add"
-          onPress={() => this.props.onAddPressed(this.state.collection)} /> );
+          onPress={() => {
+            dismissKeyboard();
+            this.props.onAddPressed(this.state.collection);
+          }} /> );
 
     return (
-      <ScrollView>
-        <View style={styles.vbox}>
-          <PfText>
-            Find someone to collect your bottles and cans.
-          </PfText>
-          <PfTextInput
-              placeholder='Your name'
-              onChangeText={text => this.updateCollection("name", text)} />
-          <PfTextInput
-              placeholder='Your address'
-              onChangeText={text => this.updateCollection("address", text)} />
-          <PfTextInput
-              placeholder='Number of bottles'
-              onChangeText={text => this.updateCollection("numBottles", text)} />
-          {buttonOrSpinner}
-        </View>
+      <ScrollView keyboardShouldPersistTaps={true}>
+        { /* TODO: this doesn't cover the area below the button */ }
+        <TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
+          <View style={styles.vbox}>
+            <PfText>
+              Find someone to collect your bottles and cans.
+            </PfText>
+            <PfTextInput
+                placeholder='Your name'
+                onChangeText={text => this.updateCollection("name", text)} />
+            <PfTextInput
+                placeholder='Your address'
+                onChangeText={text => this.updateCollection("address", text)} />
+            <PfTextInput
+                placeholder='Number of bottles'
+                onChangeText={text => this.updateCollection("numBottles", text)} />
+            {buttonOrSpinner}
+          </View>
+        </TouchableWithoutFeedback>
       </ScrollView>
     );
   }
