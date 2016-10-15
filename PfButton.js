@@ -10,14 +10,10 @@ export default class PfButton extends Component {
     super(props);
   }
 
-  onAddPressed() {
-  }
-
   render() {
     return (
       <TouchableHighlight
           underlayColor='white'
-          onPress={this.onAddPressed.bind(this)}
           {...this.props}
           style={styles.button}>
         <Text style={styles.buttonText}>

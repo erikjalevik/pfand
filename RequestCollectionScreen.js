@@ -5,6 +5,8 @@ import PfTextInput from './PfTextInput'
 import PfButton from './PfButton'
 import Constants from './Constants'
 
+import { addCollection } from './collectionReducer'
+
 import React, { Component } from 'react'
 import {
   StyleSheet,
@@ -21,18 +23,31 @@ export default class RequestCollectionScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "Pfandgeber",
-      address: "",
-      numBottles: "",
+      collection: {
+        name: "Pfandgeber",
+        address: "",
+        numBottles: ""
+      },
       isAdding: false
     }
+  }
+
+  onAddPressed() {
+    const action = addCollection(this.state.collection);
+    this.props.store.dispatch(action);
+  }
+
+  updateCollection(key, value) {
+    var c = Object.assign({}, this.state.collection);
+    c[key] = value;
+    this.setState({collection: c});
   }
 
   render() {
 
     const buttonOrSpinner = this.state.isAdding ?
       ( <ActivityIndicator size='large'/> ) :
-      ( <PfButton title="Add"/> );
+      ( <PfButton title="Add" onPress={this.onAddPressed.bind(this)} /> );
 
     return (
       <ScrollView>
@@ -42,13 +57,13 @@ export default class RequestCollectionScreen extends Component {
           </PfText>
           <PfTextInput
               placeholder='Your name'
-              onChangeText={text => this.setState({name: text})} />
+              onChangeText={text => this.updateCollection("name", text)} />
           <PfTextInput
               placeholder='Your address'
-              onChangeText={text => this.setState({address: text})} />
+              onChangeText={text => this.updateCollection("address", text)} />
           <PfTextInput
               placeholder='Number of bottles'
-              onChangeText={text => this.setState({numBottles: text})} />
+              onChangeText={text => this.updateCollection("numBottles", text)} />
           {buttonOrSpinner}
         </View>
       </ScrollView>
