@@ -5,7 +5,7 @@ import PfTextInput from './PfTextInput'
 import PfButton from './PfButton'
 import Constants from './Constants'
 
-import { addCollection } from './collectionReducer'
+import * as collectionActions from './collectionReducer'
 
 import React, { Component } from 'react'
 import {
@@ -17,8 +17,9 @@ import {
   ActivityIndicator,
   ScrollView
 } from 'react-native';
+import { connect } from 'react-redux';
 
-export default class RequestCollectionScreen extends Component {
+class RequestCollectionScreen extends Component {
 
   constructor(props) {
     super(props);
@@ -32,12 +33,8 @@ export default class RequestCollectionScreen extends Component {
     }
   }
 
-  onAddPressed() {
-    const action = addCollection(this.state.collection);
-    this.props.store.dispatch(action);
-  }
-
   updateCollection(key, value) {
+    // TODO: replace with value binding?
     var c = Object.assign({}, this.state.collection);
     c[key] = value;
     this.setState({collection: c});
@@ -47,7 +44,8 @@ export default class RequestCollectionScreen extends Component {
 
     const buttonOrSpinner = this.state.isAdding ?
       ( <ActivityIndicator size='large'/> ) :
-      ( <PfButton title="Add" onPress={this.onAddPressed.bind(this)} /> );
+      ( <PfButton title="Add"
+          onPress={() => this.props.onAddPressed(this.state.collection)} /> );
 
     return (
       <ScrollView>
@@ -79,3 +77,20 @@ const styles = StyleSheet.create({
     marginTop: 20
   },
 });
+
+function mapStateToProps(store) {
+  return {
+    //collection: store.collections[0]
+  }
+}
+
+// TODO: should I be using bindActionCreators?
+function mapDispatchToProps(dispatch) {
+  return {
+    onAddPressed: (coll) => {
+      dispatch(collectionActions.addCollection(coll));
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RequestCollectionScreen)

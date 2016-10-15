@@ -16,14 +16,17 @@ import {
   Navigator,
   StatusBar
 } from 'react-native';
+import { Provider } from 'react-redux';
 
 class Pfand extends Component {
   render() {
     return (
-      <View style={styles.vbox}>
-        <StatusBar barStyle="light-content" />
-        <RequestCollectionScreen store={store}/>
-      </View>
+      <Provider store={store}>
+        <View style={styles.vbox}>
+          <StatusBar barStyle="light-content" />
+          <RequestCollectionScreen/>
+        </View>
+      </Provider>
     );
   }
 }
@@ -31,8 +34,6 @@ class Pfand extends Component {
 store.subscribe(() => {
   console.log("Store changed: ", store.getState());
 })
-
-store.dispatch({type: "TEST_ACTION"});
 
 AppRegistry.registerComponent('pfand', () => Pfand);
 
