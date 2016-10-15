@@ -31,7 +31,8 @@ class RequestCollectionScreen extends Component {
       collection: {
         name: "Pfandgeber",
         address: "",
-        numBottles: ""
+        numBottles: "",
+        preferredTimes: ""
       },
       isAdding: false
     }
@@ -71,6 +72,9 @@ class RequestCollectionScreen extends Component {
             <PfTextInput
                 placeholder='Number of bottles'
                 onChangeText={text => this.updateCollection("numBottles", text)} />
+            <PfTextInput
+                placeholder='Preferred times'
+                onChangeText={text => this.updateCollection("preferrredTimes", text)} />
             {buttonOrSpinner}
           </View>
         </TouchableWithoutFeedback>
