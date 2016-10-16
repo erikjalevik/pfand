@@ -8,6 +8,8 @@
 
 import store from './js/store/store';
 import RequestCollectionScreen from './js/containers/RequestCollectionScreen';
+import ListCollectionsScreen from './js/containers/ListCollectionsScreen';
+
 import React, { Component } from 'react';
 import {
   AppRegistry,
@@ -24,7 +26,7 @@ class Pfand extends Component {
       <Provider store={store}>
         <View style={styles.vbox}>
           <StatusBar barStyle="light-content" />
-          <RequestCollectionScreen/>
+          <ListCollectionsScreen/>
         </View>
       </Provider>
     );
