@@ -1,11 +1,11 @@
 'use strict';
 
-import PfText from './PfText'
-import PfTextInput from './PfTextInput'
-import PfButton from './PfButton'
-import Constants from './Constants'
+import PfText from '../components/PfText'
+import PfTextInput from '../components/PfTextInput'
+import PfButton from '../components/PfButton'
+import Constants from '../Constants'
 
-import * as collectionActions from './collectionReducer'
+import * as collectionActions from '../store/collectionReducer'
 
 import React, { Component } from 'react'
 import {

@@ -1,6 +1,6 @@
 'use strict';
 
-import Constants from './Constants'
+import Constants from '../Constants'
 import React, { Component } from 'react'
 import { StyleSheet, TextInput } from 'react-native';
 

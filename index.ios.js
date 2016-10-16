@@ -6,8 +6,8 @@
 
 'use strict';
 
-import store from './store';
-import RequestCollectionScreen from './RequestCollectionScreen';
+import store from './js/store/store';
+import RequestCollectionScreen from './js/containers/RequestCollectionScreen';
 import React, { Component } from 'react';
 import {
   AppRegistry,
