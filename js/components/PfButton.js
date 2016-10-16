@@ -15,7 +15,7 @@ export default class PfButton extends Component {
       <TouchableHighlight
           underlayColor='white'
           {...this.props}
-          style={styles.button}>
+          style={[styles.button, this.props.style]}>
         <Text style={styles.buttonText}>
           {this.props.title}
         </Text>

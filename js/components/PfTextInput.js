@@ -17,7 +17,7 @@ export default class PfTextInput extends Component {
           autoCapitalise='none'
           autoCorrect={false}
           {...this.props}
-          style={styles.input} />
+          style={[styles.input, this.props.style]} />
     );
   }
 }

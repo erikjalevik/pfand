@@ -12,7 +12,7 @@ export default class PfText extends Component {
 
   render() {
     return (
-      <Text {...this.props} style={styles.body}>
+      <Text {...this.props} style={[styles.body, this.props.style]}>
         {this.props.children}
       </Text>
     );
