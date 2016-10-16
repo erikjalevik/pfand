@@ -47,11 +47,12 @@ class RequestCollectionScreen extends Component {
     const buttonOrSpinner = this.state.isAdding ?
       ( <ActivityIndicator size='large'/> ) :
       ( <PfButton title="Add"
-          onPress={() => {
-            dismissKeyboard();
-            this.props.onAddPressed(this.state.collection);
-            this.props.push();
-          }} /> );
+            onPress={() => {
+              dismissKeyboard();
+              this.props.onAddPressed(this.state.collection);
+              this.props.push();
+            }} />
+      );
 
     return (
       <ScrollView keyboardShouldPersistTaps={true}>
@@ -86,7 +87,8 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'stretch',
     padding: 10,
-    marginTop: 60
+    marginTop: 60,
+    marginBottom: 250
   },
 });
 
