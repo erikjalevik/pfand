@@ -93,9 +93,7 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps(store) {
-  return {
-    //collection: store.collections[0]
-  }
+  return {}
 }
 
 // TODO: should I be using bindActionCreators?
