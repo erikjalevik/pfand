@@ -23,8 +23,14 @@ class ListCollectionsScreen extends Component {
 
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      dataSource: ds.cloneWithRows(this.props.collections)
+      dataSource: ds.cloneWithRows(props.collections)
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      dataSource: this.state.dataSource.cloneWithRows(nextProps.collections)
+    });
   }
 
   _renderRow(coll) {
