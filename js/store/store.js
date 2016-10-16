@@ -6,7 +6,7 @@ import testReducer from './testReducer'
 // This statement replaces the initial state. The state for each piece of data
 // is initialised by its reducer.
 const rootReducer = combineReducers({
-  collection: collectionReducer,
+  collections: collectionReducer,
   testCounter: testReducer
 });
 

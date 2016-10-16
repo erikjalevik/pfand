@@ -23,14 +23,19 @@ class ListCollectionsScreen extends Component {
 
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      dataSource: ds.cloneWithRows([
-        'John', 'Joel', 'James', 'Jimmy', 'Jackson', 'Jillian', 'Julie', 'Devin'
-      ])
+      dataSource: ds.cloneWithRows(this.props.collections)
     };
   }
 
-  render() {
+  _renderRow(coll) {
+    return (
+      <PfText>
+        {coll.name} {coll.address} {coll.numBottles} {coll.preferredTimes}
+      </PfText>
+    );
+  }
 
+  render() {
     return (
       <View style={styles.vbox}>
         <PfText>
@@ -38,7 +43,8 @@ class ListCollectionsScreen extends Component {
         </PfText>
         <ListView
             dataSource={this.state.dataSource}
-            renderRow={(rowData) => <PfText>{rowData}</PfText>} />
+            renderRow={this._renderRow}
+            enableEmptySections={true} />
       </View>
     );
   }

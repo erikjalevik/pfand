@@ -72,7 +72,7 @@ class RequestCollectionScreen extends Component {
                 onChangeText={text => this.updateCollection("numBottles", text)} />
             <PfTextInput
                 placeholder='Preferred times'
-                onChangeText={text => this.updateCollection("preferrredTimes", text)} />
+                onChangeText={text => this.updateCollection("preferredTimes", text)} />
             {buttonOrSpinner}
           </View>
         </TouchableWithoutFeedback>
