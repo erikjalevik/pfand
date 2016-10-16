@@ -47,10 +47,15 @@ class ListCollectionsScreen extends Component {
         <PfText>
           Currently available collections:
         </PfText>
+
+        { /* Without removeClippedSubviews, the list view sometimes shows up empty until you scroll,
+             see https://productpains.com/post/react-native/listview-doesnt-render-rows-until-scroll/ */ }
         <ListView
             dataSource={this.state.dataSource}
             renderRow={this._renderRow}
-            enableEmptySections={true} />
+            enableEmptySections={true}
+            removeClippedSubviews={false}
+            style={styles.list} />
       </View>
     );
   }
@@ -61,9 +66,14 @@ const styles = StyleSheet.create({
   vbox: {
     flexDirection: 'column',
     alignItems: 'stretch',
+    justifyContent: 'flex-start',
     padding: 10,
-    marginTop: 60
+    marginTop: 60,
+    flex: 1
   },
+  list: {
+    flex: 1
+  }
 });
 
 function mapStateToProps(store) {
