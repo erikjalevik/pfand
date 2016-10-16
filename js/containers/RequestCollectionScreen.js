@@ -50,6 +50,7 @@ class RequestCollectionScreen extends Component {
           onPress={() => {
             dismissKeyboard();
             this.props.onAddPressed(this.state.collection);
+            this.props.push();
           }} /> );
 
     return (
@@ -85,7 +86,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'stretch',
     padding: 10,
-    marginTop: 20
+    marginTop: 60
   },
 });
 

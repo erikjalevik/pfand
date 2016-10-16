@@ -20,7 +20,6 @@ class ListCollectionsScreen extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
 
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
@@ -51,7 +50,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'stretch',
     padding: 10,
-    marginTop: 20
+    marginTop: 60
   },
 });
 
