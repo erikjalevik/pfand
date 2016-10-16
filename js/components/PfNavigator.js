@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
   }
 });
 
+// TODO: why can't I make this a component?
 //class PfNavigationBar extends Component {
 //  render() {
 //    return (
@@ -61,14 +62,17 @@ export default class PfNavigator extends Component {
   _renderScene(route, navigator) {
 
     const pushHandler = () => {
-      const nextIndex = route.index + 1;
       navigator.jumpForward();
     };
 
+    const popHandler = () => {
+      navigator.jumpBack();
+    };
+
     if (route.index == 0) {
-      return <RequestCollectionScreen push={pushHandler} />;
+      return <RequestCollectionScreen push={pushHandler} pop={popHandler} />;
     } else if (route.index == 1) {
-      return <ListCollectionsScreen push={pushHandler} />;
+      return <ListCollectionsScreen push={pushHandler} pop={popHandler} />;
     }
   }
 
