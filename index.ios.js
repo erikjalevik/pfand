@@ -6,8 +6,8 @@
 
 'use strict';
 
-import store from './js/store/store';
-import PfNavigator from './js/components/PfNavigator';
+import store from './src/store/store';
+import PfNavigator from './src/components/PfNavigator';
 
 import React, { Component } from 'react';
 import {
