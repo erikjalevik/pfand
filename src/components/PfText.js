@@ -1,6 +1,6 @@
 'use strict';
 
-import Constants from '../Constants'
+import constants from '../constants'
 import React, { Component } from 'react'
 import { StyleSheet, Text } from 'react-native';
 
@@ -21,8 +21,8 @@ export default class PfText extends Component {
 
 const styles = StyleSheet.create({
   body: {
-    color: Constants.textColor,
-    fontSize: Constants.bodyFontSize,
+    color: constants.textColor,
+    fontSize: constants.bodyFontSize,
     textAlign: 'center',
     marginTop: 20,
     marginBottom: 20

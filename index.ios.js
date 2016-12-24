@@ -8,6 +8,7 @@
 
 import store from './src/store/store';
 import PfNavigator from './src/components/PfNavigator';
+import constants from './src/constants'
 
 import React, { Component } from 'react';
 import {
@@ -43,7 +44,7 @@ AppRegistry.registerComponent('pfand', () => Pfand);
 
 const styles = StyleSheet.create({
   vbox: {
-    backgroundColor: Constants.backgroundColor,
+    backgroundColor: constants.backgroundColor,
     flexDirection: 'column',
     flex: 1,
     alignItems: 'stretch'

@@ -3,7 +3,6 @@
 import PfText from '../components/PfText'
 import PfTextInput from '../components/PfTextInput'
 import PfButton from '../components/PfButton'
-import Constants from '../Constants'
 
 import * as collectionActions from '../store/collectionReducer'
 

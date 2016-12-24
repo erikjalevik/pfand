@@ -1,6 +1,6 @@
 'use strict';
 
-import Constants from '../Constants'
+import constants from '../constants'
 import React, { Component } from 'react'
 import { StyleSheet, TextInput } from 'react-native';
 
@@ -13,7 +13,7 @@ export default class PfTextInput extends Component {
   render() {
     return (
       <TextInput
-          placeholderTextColor={Constants.textColorDisabled}
+          placeholderTextColor={constants.textColorDisabled}
           autoCapitalise='none'
           autoCorrect={false}
           {...this.props}
@@ -24,9 +24,9 @@ export default class PfTextInput extends Component {
 
 const styles = StyleSheet.create({
   input: {
-    color: Constants.textColor,
-    borderColor: Constants.textColor,
-    fontSize: Constants.inputFontSize,
+    color: constants.textColor,
+    borderColor: constants.textColor,
+    fontSize: constants.inputFontSize,
     height: 36,
     padding: 4,
     marginTop: 5,

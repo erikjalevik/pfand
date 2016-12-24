@@ -1,6 +1,6 @@
 'use strict';
 
-import Constants from '../Constants'
+import constants from '../constants'
 import React, { Component } from 'react'
 import { StyleSheet, TouchableHighlight, Text } from 'react-native';
 
@@ -26,8 +26,8 @@ export default class PfButton extends Component {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: Constants.textColor,
-    borderColor: Constants.textColor,
+    backgroundColor: constants.textColor,
+    borderColor: constants.textColor,
     justifyContent: 'center',
     height: 36,
     borderWidth: 1,
@@ -36,8 +36,8 @@ const styles = StyleSheet.create({
     borderRadius: 8
   },
   buttonText: {
-    color: Constants.backgroundColor,
-    fontSize: Constants.buttonFontSize,
+    color: constants.backgroundColor,
+    fontSize: constants.buttonFontSize,
     alignSelf: 'center'
   }
 });

@@ -1,6 +1,6 @@
 'use strict';
 
-import Constants from '../Constants'
+import constants from '../constants'
 import RequestCollectionScreen from '../containers/RequestCollectionScreen';
 import ListCollectionsScreen from '../containers/ListCollectionsScreen';
 
@@ -14,11 +14,11 @@ const routes = [
 
 const styles = StyleSheet.create({
   navBar: {
-    backgroundColor: Constants.textColor,
+    backgroundColor: constants.textColor,
   },
   navText: {
-    color: Constants.backgroundColor,
-    fontSize: Constants.buttonFontSize,
+    color: constants.backgroundColor,
+    fontSize: constants.buttonFontSize,
     padding: 10
   }
 });

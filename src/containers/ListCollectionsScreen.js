@@ -1,7 +1,6 @@
 'use strict';
 
 import PfText from '../components/PfText'
-import Constants from '../Constants'
 
 import * as collectionActions from '../store/collectionReducer'
 
