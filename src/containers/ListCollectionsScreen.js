@@ -1,35 +1,28 @@
-'use strict';
-
 import PfText from '../components/PfText'
-
-import * as collectionActions from '../store/collectionReducer'
 
 import React, { Component } from 'react'
 import {
   StyleSheet,
   View,
-  TouchableHighlight,
-  ActivityIndicator,
-  ScrollView,
   ListView
-} from 'react-native';
-import { connect } from 'react-redux';
+} from 'react-native'
+import { connect } from 'react-redux'
 
 class ListCollectionsScreen extends Component {
 
   constructor(props) {
-    super(props);
+    super(props)
 
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
     this.state = {
       dataSource: ds.cloneWithRows(props.collections)
-    };
+    }
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
       dataSource: this.state.dataSource.cloneWithRows(nextProps.collections)
-    });
+    })
   }
 
   _renderRow(coll) {
@@ -37,7 +30,7 @@ class ListCollectionsScreen extends Component {
       <PfText>
         {coll.name} {coll.address} {coll.numBottles} {coll.preferredTimes}
       </PfText>
-    );
+    )
   }
 
   render() {
@@ -56,7 +49,7 @@ class ListCollectionsScreen extends Component {
             removeClippedSubviews={false}
             style={styles.list} />
       </View>
-    );
+    )
   }
 }
 
@@ -73,7 +66,7 @@ const styles = StyleSheet.create({
   list: {
     flex: 1
   }
-});
+})
 
 function mapStateToProps(store) {
   return {

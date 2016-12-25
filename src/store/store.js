@@ -7,6 +7,6 @@ import testReducer from './testReducer'
 const rootReducer = combineReducers({
   collections: collectionReducer,
   testCounter: testReducer
-});
+})
 
-export default createStore(rootReducer);
+export default createStore(rootReducer)

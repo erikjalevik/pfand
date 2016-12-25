@@ -7,7 +7,7 @@ const ADD_COLLECTION = 'ADD_COLLECTION'
 export function addCollection(collection) {
   return {
     type: ADD_COLLECTION,
-    collection: collection
+    collection
   }
 }
 
@@ -16,8 +16,8 @@ export function addCollection(collection) {
 export default function collectionReducer(state = [], action) {
   switch (action.type) {
     case ADD_COLLECTION:
-      return state.concat(action.collection);
+      return state.concat(action.collection)
     default:
-      return state;
+      return state
   }
 }

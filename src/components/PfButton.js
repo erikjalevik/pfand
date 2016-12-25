@@ -1,13 +1,11 @@
-'use strict';
-
 import constants from '../constants'
 import React, { Component } from 'react'
-import { StyleSheet, TouchableHighlight, Text } from 'react-native';
+import { StyleSheet, TouchableHighlight, Text } from 'react-native'
 
 export default class PfButton extends Component {
 
   constructor(props) {
-    super(props);
+    super(props)
   }
 
   render() {
@@ -20,7 +18,7 @@ export default class PfButton extends Component {
           {this.props.title}
         </Text>
       </TouchableHighlight>
-    );
+    )
   }
 }
 
@@ -40,4 +38,4 @@ const styles = StyleSheet.create({
     fontSize: constants.buttonFontSize,
     alignSelf: 'center'
   }
-});
+})

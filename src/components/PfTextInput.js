@@ -1,13 +1,11 @@
-'use strict';
-
 import constants from '../constants'
 import React, { Component } from 'react'
-import { StyleSheet, TextInput } from 'react-native';
+import { StyleSheet, TextInput } from 'react-native'
 
 export default class PfTextInput extends Component {
 
   constructor(props) {
-    super(props);
+    super(props)
   }
 
   render() {
@@ -18,7 +16,7 @@ export default class PfTextInput extends Component {
           autoCorrect={false}
           {...this.props}
           style={[styles.input, this.props.style]} />
-    );
+    )
   }
 }
 
@@ -34,4 +32,4 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8
   }
-});
+})

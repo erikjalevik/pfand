@@ -1,26 +1,15 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
-'use strict';
-
-import store from './src/store/store';
-import PfNavigator from './src/components/PfNavigator';
+import store from './src/store/store'
+import PfNavigator from './src/components/PfNavigator'
 import constants from './src/constants'
 
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   AppRegistry,
   StyleSheet,
   View,
-  Navigator,
   StatusBar,
-  Text,
-  TouchableHighlight
-} from 'react-native';
-import { Provider } from 'react-redux';
+} from 'react-native'
+import { Provider } from 'react-redux'
 
 class Pfand extends Component {
 
@@ -28,19 +17,19 @@ class Pfand extends Component {
     return (
       <Provider store={store}>
         <View style={styles.vbox}>
-          <StatusBar barStyle="light-content" />
+          <StatusBar barStyle='light-content' />
           <PfNavigator />
         </View>
       </Provider>
-    );
+    )
   }
 }
 
 store.subscribe(() => {
-  console.log("Store changed: ", store.getState());
+  console.log('Store changed: ', store.getState())
 })
 
-AppRegistry.registerComponent('pfand', () => Pfand);
+AppRegistry.registerComponent('pfand', () => Pfand)
 
 const styles = StyleSheet.create({
   vbox: {
@@ -49,4 +38,4 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'stretch'
   }
-});
+})

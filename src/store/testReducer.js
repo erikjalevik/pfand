@@ -14,9 +14,9 @@ export function testAction() {
 
 export default (state = 0, action) => {
   switch (action.type) {
-    case "TEST_ACTION":
-      return state + 1;
+    case 'TEST_ACTION':
+      return state + 1
     default:
-      return state;
+      return state
   }
 }

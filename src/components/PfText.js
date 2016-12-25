@@ -1,13 +1,11 @@
-'use strict';
-
 import constants from '../constants'
 import React, { Component } from 'react'
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text } from 'react-native'
 
 export default class PfText extends Component {
 
   constructor(props) {
-    super(props);
+    super(props)
   }
 
   render() {
@@ -15,7 +13,7 @@ export default class PfText extends Component {
       <Text {...this.props} style={[styles.body, this.props.style]}>
         {this.props.children}
       </Text>
-    );
+    )
   }
 }
 
@@ -27,4 +25,4 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 20
   }
-});
+})

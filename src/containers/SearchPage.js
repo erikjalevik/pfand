@@ -1,5 +1,3 @@
-'use strict';
-
 import React, { Component } from 'react'
 import {
   StyleSheet,
@@ -7,79 +5,78 @@ import {
   TextInput,
   View,
   TouchableHighlight,
-  ActivityIndicator,
-  Image,
-  ScrollView
-} from 'react-native';
+  ActivityIndicator
+} from 'react-native'
 
 function urlForQueryAndPage(key, value, pageNumber) {
   var data = {
-      country: 'uk',
-      pretty: '1',
-      encoding: 'json',
-      listing_type: 'buy',
-      action: 'search_listings',
-      page: pageNumber
-  };
-  data[key] = value;
+    country: 'uk',
+    pretty: '1',
+    encoding: 'json',
+    listing_type: 'buy',
+    action: 'search_listings',
+    page: pageNumber
+  }
+  data[key] = value
 
   var querystring = Object.keys(data)
-    .map(key => key + '=' + encodeURIComponent(data[key]))
-    .join('&');
+    .map(k => k + '=' + encodeURIComponent(data[key]))
+    .join('&')
 
-  return 'http://api.nestoria.co.uk/api?' + querystring;
-};
+  return 'http://api.nestoria.co.uk/api?' + querystring
+}
 
 class SearchPage extends Component {
 
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       searchString: 'london',
       isLoading: false,
       message: ''
-    };
+    }
   }
 
   onSearchTextChanged(text) {
-    console.log('onSearchTextChanged');
-    this.setState({ searchString: text });
-    console.log(this.state.searchString);
+    console.log('onSearchTextChanged')
+    this.setState({ searchString: text })
+    console.log(this.state.searchString)
   }
 
   _executeQuery(query) {
-    console.log(query);
-    this.setState({ isLoading: true });
+    console.log(query)
+    this.setState({ isLoading: true })
 
     fetch(query)
       .then(response => response.json())
       .then(json => this._handleResponse(json.response))
       .catch(error =>
-         this.setState({
+        this.setState({
           isLoading: false,
           message: 'Something bad happened ' + error
-       }));
+        })
+      )
   }
 
   _handleResponse(response) {
-    this.setState({ isLoading: false , message: '' });
+    this.setState({ isLoading: false , message: '' })
     if (response.application_response_code.substr(0, 1) === '1') {
-      console.log('Properties found: ' + response.listings.length);
+      console.log('Properties found: ' + response.listings.length)
     } else {
-      this.setState({ message: 'Location not recognized; please try again.'});
+      this.setState({ message: 'Location not recognized; please try again.'})
     }
   }
 
   onSearchPressed() {
-    var query = urlForQueryAndPage('place_name', this.state.searchString, 1);
-    this._executeQuery(query);
+    var query = urlForQueryAndPage('place_name', this.state.searchString, 1)
+    this._executeQuery(query)
   }
 
   render() {
 
     var spinner = this.state.isLoading ?
-      ( <ActivityIndicator size='large'/> ) :
-      ( <View/> );
+      <ActivityIndicator size='large'/> :
+      <View/>
 
     return (
       <View>
@@ -87,7 +84,6 @@ class SearchPage extends Component {
           <Text style={styles.testLabel1}>Label1</Text>
           <Text style={styles.testLabel2}>Label2</Text>
         </View>
-
 
         <View style={styles.container}>
           <Text style={styles.description}>
@@ -114,7 +110,7 @@ class SearchPage extends Component {
           <Text style={styles.description}>{this.state.message}</Text>
         </View>
       </View>
-    );
+    )
   }
 }
 
@@ -136,11 +132,8 @@ const styles = StyleSheet.create({
   testLabel2: {
     //height: 50,
     margin: 5,
-    backgroundColor: 'yellow',
+    backgroundColor: 'yellow'
   },
-
-
-
   description: {
     marginBottom: 20,
     fontSize: 18,
@@ -185,6 +178,6 @@ const styles = StyleSheet.create({
     color: 'white',
     alignSelf: 'center'
   }
-});
+})
 
-module.exports = SearchPage;
+module.exports = SearchPage
