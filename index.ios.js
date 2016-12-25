@@ -1,5 +1,5 @@
 import store from './src/store/store'
-import PfNavigator from './src/components/PfNavigator'
+import PfNavigator from './src/containers/PfNavigator'
 import constants from './src/constants'
 
 import React, { Component } from 'react'

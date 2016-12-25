@@ -47,6 +47,8 @@ const navBar = (
 
 export default class PfNavigator extends Component {
 
+  displayName = 'PfNavigator'
+
   constructor(props) {
     super(props)
   }
@@ -73,10 +75,10 @@ export default class PfNavigator extends Component {
   render() {
     return (
       <Navigator
-          initialRouteStack={routes}
-          initialRoute={routes[0]}
-          navigationBar={navBar}
-          renderScene={this._renderScene} />
+        initialRouteStack={routes}
+        initialRoute={routes[0]}
+        navigationBar={navBar}
+        renderScene={this._renderScene} />
     )
   }
 }
