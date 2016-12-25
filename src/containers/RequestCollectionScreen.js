@@ -1,8 +1,10 @@
+// @flow
+
 import PfText from '../components/PfText'
 import PfTextInput from '../components/PfTextInput'
 import PfButton from '../components/PfButton'
 
-import * as collectionActions from '../store/collectionReducer'
+import * as CollectionReducer from '../store/collectionReducer'
 
 import React, { Component } from 'react'
 import {
@@ -14,10 +16,24 @@ import {
 } from 'react-native'
 import { connect } from 'react-redux'
 
-// Unsure why Keybard.dismiss() doesn't work...
+// Unsure why Keyboard.dismiss() doesn't work...
 const dismissKeyboard = require('dismissKeyboard')
 
+type Props = {
+  onAddPressed: Function,
+  push: Function,
+  pop: Function
+}
+
+type State = {
+  collection: CollectionReducer.Collection,
+  isAdding: bool
+}
+
 class RequestCollectionScreen extends Component {
+
+  props: Props
+  state: State
 
   constructor(props) {
     super(props)
@@ -25,7 +41,7 @@ class RequestCollectionScreen extends Component {
       collection: {
         name: 'Pfandgeber',
         address: '',
-        numBottles: '',
+        numBottles: 1,
         preferredTimes: ''
       },
       isAdding: false
@@ -33,10 +49,8 @@ class RequestCollectionScreen extends Component {
   }
 
   updateCollection(key, value) {
-    // TODO: replace with value binding?
-    var c = Object.assign({}, this.state.collection)
-    c[key] = value
-    this.setState({collection: c})
+    // setState only merges top-level objects so we need to copy the existing collection properties and replace the key
+    this.setState({ collection: { ...this.state.collection, [key]: value } })
   }
 
   render() {
@@ -44,12 +58,11 @@ class RequestCollectionScreen extends Component {
     const buttonOrSpinner = this.state.isAdding ?
       <ActivityIndicator size='large'/> :
       (<PfButton title='Add'
-            onPress={() => {
-              dismissKeyboard()
-              this.props.onAddPressed(this.state.collection)
-              this.props.push()
-            }} />
-      )
+        onPress={() => {
+          dismissKeyboard()
+          this.props.onAddPressed(this.state.collection)
+          this.props.push()
+        }} />)
 
     return (
       <ScrollView keyboardShouldPersistTaps={true}>
@@ -97,7 +110,7 @@ function mapStateToProps(store) {
 function mapDispatchToProps(dispatch) {
   return {
     onAddPressed: (coll) => {
-      dispatch(collectionActions.addCollection(coll))
+      dispatch(CollectionReducer.addCollection(coll))
     }
   }
 }
