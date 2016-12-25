@@ -74,16 +74,20 @@ class RequestCollectionScreen extends Component {
             </PfText>
             <PfTextInput
                 placeholder='Your name'
-                onChangeText={text => this.updateCollection('name', text)} />
+                onChangeText={text => this.updateCollection('name', text)}
+                value={this.state.collection.name} />
             <PfTextInput
                 placeholder='Your address'
-                onChangeText={text => this.updateCollection('address', text)} />
+                onChangeText={text => this.updateCollection('address', text)}
+                value={this.state.collection.address} />
             <PfTextInput
                 placeholder='Number of bottles'
-                onChangeText={text => this.updateCollection('numBottles', text)} />
+                onChangeText={text => this.updateCollection('numBottles', text)}
+                value={this.state.collection.numBottles.toString()} />
             <PfTextInput
                 placeholder='Preferred times'
-                onChangeText={text => this.updateCollection('preferredTimes', text)} />
+                onChangeText={text => this.updateCollection('preferredTimes', text)}
+                value={this.state.collection.preferredTimes} />
             {buttonOrSpinner}
           </View>
         </TouchableWithoutFeedback>
