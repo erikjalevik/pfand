@@ -3,7 +3,6 @@
 import PfText from '../components/PfText'
 import PfTextInput from '../components/PfTextInput'
 import PfButton from '../components/PfButton'
-
 import * as CollectionReducer from '../store/collectionReducer'
 
 import React, { Component } from 'react'
@@ -12,7 +11,8 @@ import {
   View,
   ActivityIndicator,
   ScrollView,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  Keyboard
 } from 'react-native'
 import { connect } from 'react-redux'
 
@@ -27,13 +27,16 @@ type Props = {
 
 type State = {
   collection: CollectionReducer.Collection,
-  isAdding: bool
+  isAdding: bool,
+  keyboardPadding: number
 }
 
 class RequestCollectionScreen extends Component {
 
   props: Props
   state: State
+  keyboardShownListener: Object
+  keyboardHiddenListener: Object
 
   constructor(props) {
     super(props)
@@ -44,11 +47,27 @@ class RequestCollectionScreen extends Component {
         numBottles: 1,
         preferredTimes: ''
       },
-      isAdding: false
+      isAdding: false,
+      keyboardPadding: 0
     }
   }
 
-  updateCollection(key, value) {
+  componentWillMount() {
+    this.keyboardShownListener = Keyboard.addListener('keyboardDidShow', (info) => {
+      const keyboardHeight = info.endCoordinates.height
+      this.setState({keyboardPadding: keyboardHeight})
+    })
+    this.keyboardHiddenListener = Keyboard.addListener('keyboardDidHide', () => {
+      this.setState({keyboardPadding: 0})
+    })
+  }
+
+  componentWillUnmount() {
+    this.keyboardShownListener.remove()
+    this.keyboardHiddenListener.remove()
+  }
+
+  _updateCollection(key, value) {
     // setState only merges top-level objects so we need to copy the existing collection properties and replace the key
     this.setState({ collection: { ...this.state.collection, [key]: value } })
   }
@@ -65,28 +84,33 @@ class RequestCollectionScreen extends Component {
         }} />)
 
     return (
-      <ScrollView keyboardShouldPersistTaps={true}>
-        { /* TODO: this doesn't cover the area below the button */ }
+      <ScrollView
+        keyboardShouldPersistTaps={true} // tapping outside currently focused field does not dismiss
+        style={styleSheet.container}
+        contentContainerStyle={{paddingBottom: this.state.keyboardPadding}}>
+        { /* Tried KeyboardAvoidingView here but couldn't get it to work with the ScrollView
+             (neither could anyone on the Internet...). Instead using the manual keyboard padding
+             offset on the content container above. */ }
         <TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
-          <View style={styles.vbox}>
+          <View style={styleSheet.vbox}>
             <PfText>
               Find someone to collect your bottles and cans.
             </PfText>
             <PfTextInput
                 placeholder='Your name'
-                onChangeText={text => this.updateCollection('name', text)}
+                onChangeText={text => this._updateCollection('name', text)}
                 value={this.state.collection.name} />
             <PfTextInput
                 placeholder='Your address'
-                onChangeText={text => this.updateCollection('address', text)}
+                onChangeText={text => this._updateCollection('address', text)}
                 value={this.state.collection.address} />
             <PfTextInput
                 placeholder='Number of bottles'
-                onChangeText={text => this.updateCollection('numBottles', text)}
+                onChangeText={text => this._updateCollection('numBottles', text)}
                 value={this.state.collection.numBottles.toString()} />
             <PfTextInput
                 placeholder='Preferred times'
-                onChangeText={text => this.updateCollection('preferredTimes', text)}
+                onChangeText={text => this._updateCollection('preferredTimes', text)}
                 value={this.state.collection.preferredTimes} />
             {buttonOrSpinner}
           </View>
@@ -96,15 +120,19 @@ class RequestCollectionScreen extends Component {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = {
+  container: {
+    flex: 1
+  },
   vbox: {
+    flex: 1,
     flexDirection: 'column',
     alignItems: 'stretch',
     padding: 10,
-    marginTop: 60,
-    marginBottom: 250
+    marginTop: 60
   }
-})
+}
+const styleSheet = StyleSheet.create(styles)
 
 function mapStateToProps(store) {
   return {}
