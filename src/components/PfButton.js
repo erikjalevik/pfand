@@ -1,6 +1,6 @@
 import constants from '../constants'
 import React, { Component } from 'react'
-import { StyleSheet, TouchableHighlight, Text } from 'react-native'
+import { StyleSheet, TouchableOpacity, Text } from 'react-native'
 
 export default class PfButton extends Component {
 
@@ -10,14 +10,14 @@ export default class PfButton extends Component {
 
   render() {
     return (
-      <TouchableHighlight
-          underlayColor='white'
+      <TouchableOpacity
           {...this.props}
-          style={[styles.button, this.props.style]}>
+          style={[styles.button, this.props.style]}
+          activeOpacity={0.5}>
         <Text style={styles.buttonText}>
           {this.props.title}
         </Text>
-      </TouchableHighlight>
+      </TouchableOpacity>
     )
   }
 }
