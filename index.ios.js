@@ -6,18 +6,15 @@ import React, { Component } from 'react'
 import {
   AppRegistry,
   StyleSheet,
-  View,
-  StatusBar,
+  View
 } from 'react-native'
 import { Provider } from 'react-redux'
 
 class Pfand extends Component {
-
   render() {
     return (
       <Provider store={store}>
         <View style={styles.vbox}>
-          <StatusBar barStyle='light-content' />
           <PfNavigator />
         </View>
       </Provider>
