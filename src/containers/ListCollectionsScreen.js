@@ -12,17 +12,6 @@ class ListCollectionsScreen extends Component {
 
   constructor(props) {
     super(props)
-
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
-    this.state = {
-      dataSource: ds.cloneWithRows(props.collections)
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(nextProps.collections)
-    })
   }
 
   _renderRow(coll) {
@@ -43,7 +32,7 @@ class ListCollectionsScreen extends Component {
         { /* Without removeClippedSubviews, the list view sometimes shows up empty until you scroll,
              see https://productpains.com/post/react-native/listview-doesnt-render-rows-until-scroll/ */ }
         <ListView
-            dataSource={this.state.dataSource}
+            dataSource={this.props.dataSource}
             renderRow={this._renderRow}
             enableEmptySections={true}
             removeClippedSubviews={false}
@@ -68,9 +57,11 @@ const styles = StyleSheet.create({
   }
 })
 
-function mapStateToProps(store) {
+const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
+
+function mapStateToProps(state) {
   return {
-    collections: store.collections
+    dataSource: ds.cloneWithRows(state.collections)
   }
 }
 
